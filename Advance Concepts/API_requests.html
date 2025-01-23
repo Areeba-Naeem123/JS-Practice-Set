@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+</body>
+<script>
+
+// XML request is called AJAX request 
+const requestUrl = 'https://randomuser.me/api/';
+
+
+const XHR= new XMLHttpRequest()
+
+XHR.open('GET',requestUrl);// property step 1
+//  if we want to get track of all the states then we need to use onreadystatechange
+
+XHR.onreadystatechange=function(){
+    console.log(XHR.readyState)
+    if(XHR.readyState==4){
+        // response of api is mostly in string so we need to convert it into objects first 
+        // here we will convert it into json object
+        
+        const data=JSON.parse(this.responseText)
+        // console.log(this.responseText);
+        console.log(typeof data)
+        console.log(data.results);
+
+
+    }
+} // this method continuously track the state of API
+
+// console.log("check on console");
+//  status of API change from 0 to 4
+// console.log(XHR.readyState);
+
+XHR.send();// property step 2
+
+
+
+
+         
+
+</script>
+</html>
