@@ -1,4 +1,3 @@
-
 // almost everything in js is object 
 //  concept of classes in js in less 
 
@@ -58,7 +57,7 @@ new Promise (function(resolve,reject){
 const PromiseThree=new Promise(function (resolve, reject ){
     setTimeout(function(){
 resolve({username:"Areeba", email:"example@gmail.com"})// passing an object as argument
-    },2000)
+    },1000)
 })
 PromiseThree.then(function(user){// here the function is getting an object which is actually being passed in resolve
 console.log(user);
@@ -118,7 +117,8 @@ console.log(username);
 
 const PromiseFive=new Promise((resolve,reject)=>{
     setTimeout(function(){
-        let error=false;
+        let error=true; // in this case error is design , so async await cannot handle error directly 
+
         if(!error){
             resolve({username:"JavaScriipt",password:"123"})
         }
@@ -131,5 +131,24 @@ const PromiseFive=new Promise((resolve,reject)=>{
     },1000)
 
 })
+//  we can handle promise with async await also instead of using .then or .catch
 
-PromiseFive.then
+// PromiseFive.then
+//  in this .catch cannot handle gracefully 
+//  but in Database we prefer aysnc await instead of .then 
+async function ConsumeFive() {
+    try{
+        const response=await PromiseFive;
+    console.log(response);
+    }
+    catch(error){
+console.log(error);
+
+    }
+
+}
+
+ConsumeFive()
+
+
+
